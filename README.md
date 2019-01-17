@@ -8,8 +8,8 @@ Prerelease code for February 2019
 - [Run]()
 ## Projects
 Things to do for the prerelease. Add anything to "To Do", if you want to start on one of the tasks move it to "In Progress" and add you name. Once done put the card into "Done"
-- [Errors]()
-- [Additions]()
+- [Errors](https://github.com/aleksandr-isaev/febCode2019/projects/1)
+- [Additions](https://github.com/aleksandr-isaev/febCode2019/projects/2)
 
 ## Pre-Release
 
