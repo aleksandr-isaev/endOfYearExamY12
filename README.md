@@ -1,11 +1,12 @@
 # febCode2019
 Prerelease code for February 2019 
-## Quick Access
-- [Module1]()
-- [TrackerSystem]()
-- [RunTracker]()
-- [Convert]()
-- [Run]()
+## Quick Access - Skeleton Code
+- [Module1](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/Module1.vb)
+- [BingoGame](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/BingoGame.vb)
+- [BingoCard](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/BingoCard.vb)
+- [BingoBonusCard](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/BingoBonusCard.vb)
+- [NumberMachine](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/NumberMachine.vb)
+- [repo](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/repo.vb)
 ## Projects
 Things to do for the prerelease. Add anything to "To Do", if you want to start on one of the tasks move it to "In Progress" and add you name. Once done put the card into "Done"
 - [Errors](https://github.com/aleksandr-isaev/febCode2019/projects/1)
