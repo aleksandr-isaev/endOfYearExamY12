@@ -1,0 +1,347 @@
+Module Module1
+
+    Sub Main()
+        Dim NewBingoGame As New BingoGame
+        NewBingoGame.Menu()
+        Console.ReadLine()
+    End Sub
+
+    Class BingoGame
+        Dim numbers As New NumberMachine
+
+        Public Sub New()
+            Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+            Console.WriteLine("*        B-I-N-G-O S-I-M      *")
+            Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        End Sub
+
+        Public Sub PlayGame()
+            Dim playerCard As New BingoCard
+            Dim won As Boolean
+            playerCard.Displaycard()
+            Console.WriteLine("Eyes Down... ")
+
+            Do
+                Caller()
+                Console.WriteLine("Did you win?")
+                Console.WriteLine("Enter 1 for yes and 0 for no?")
+                won = Console.ReadLine()
+                Console.Clear()
+                playerCard.Displaycard()
+            Loop Until won
+
+            Console.WriteLine("You have matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
+            If playerCard.GameOver(numbers.getNumbers, numbers.getBack) = 15 Then
+                Console.WriteLine("Yes you have won!")
+            Else
+                Console.WriteLine("Sorry you stopped too early")
+                Console.WriteLine("You only matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
+                Console.WriteLine("GAME OVER")
+            End If
+
+        End Sub
+
+        Public Sub PlayBonusGame()
+            Dim playerCard As New BingoBonusCard
+            Dim won As Boolean
+            playerCard.Displaycard()
+            Console.WriteLine("Eyes Down... ")
+
+            Do
+                Console.WriteLine("**BINGO BONUS**")
+                Caller()
+                Console.WriteLine("Did you win?")
+                Console.WriteLine("Enter 1 for yes and 0 for no?")
+                won = Console.ReadLine()
+                Console.Clear()
+                playerCard.Displaycard()
+            Loop Until won
+
+
+            Select Case playerCard.GameOver(numbers.getNumbers, numbers.getBack)
+                Case 1
+                    Console.WriteLine("Well Done Full House")
+                Case 2
+                    Console.WriteLine("Well Done Two Lines")
+                Case 0
+                    Console.WriteLine("Sorry you stopped too early, GAME OVER")
+
+            End Select
+
+
+        End Sub
+
+        Private Function Caller() As Integer
+            Caller = numbers.nextBall
+            Console.WriteLine("and the next ball is.....")
+            If Caller = 11 Then
+                Console.WriteLine("legs 11")
+            Else
+                Console.WriteLine(Caller)
+            End If
+        End Function
+
+        Public Function Menu() As Boolean
+            Dim choice As Integer
+            Do
+                MenuOptions()
+                choice = Console.ReadLine()
+
+                Select Case choice
+                    Case 0
+                        Console.WriteLine("Goodbye")
+                    Case 1
+                        PlayGame()
+                    Case 2
+                        PlayBonusGame()
+                    Case 3
+                        numbers.PracticeGame()
+                        Console.Clear()
+                        Console.WriteLine("Practice Game Initiated")
+                    Case Else
+                        Console.WriteLine("Not an Option")
+                End Select
+            Loop Until choice = 1 Or choice = 2 Or choice = 0
+            Return True
+        End Function
+
+        Public Sub MenuOptions()
+            Console.WriteLine("---------------------------------------")
+            Console.WriteLine("Choose 1 play Bingo")
+            Console.WriteLine("Choose 2 play Bingo Bonus")
+            Console.WriteLine("Choose 3 play practice game")
+            Console.WriteLine("Choose 0 to exit")
+        End Sub
+
+
+    End Class
+
+    Class BingoCard
+        Protected numbers(2, 8) As Integer
+
+        Public Sub New()
+            numbers = AssignNumbers()
+        End Sub
+        Private Function AssignNumbers() As Integer(,)
+            'Randomize()
+            Dim row1(4) As Integer
+            Dim row2(4) As Integer
+            Dim row3(4) As Integer
+            Dim cardnumbers(2, 8) As Integer
+
+            row1 = AssignRowPlaces()
+            row2 = AssignRowPlaces()
+            row3 = AssignRowPlaces()
+
+            For x = 0 To 4
+                cardnumbers(0, row1(x)) = repo.NewRandom(1, 8) + (10 * row1(x))
+            Next
+
+            For x = 0 To 4
+                Dim base As Integer
+                base = (cardnumbers(0, row2(x)) Mod 10) + 1
+                base = repo.NewRandom(base, 9)
+                cardnumbers(1, row2(x)) = base + (10 * row2(x))
+            Next
+
+            For x = 0 To 4
+                Dim base As Integer
+                If cardnumbers(1, row3(x)) = 0 Then
+
+                    base = (cardnumbers(0, row3(x)) Mod 10) + 1
+                Else
+                    base = (cardnumbers(1, row3(x)) Mod 10) + 1
+                End If
+
+
+                base = repo.NewRandom(base, 10)
+                cardnumbers(2, row3(x)) = base + (10 * row3(x))
+            Next
+
+            Return cardnumbers
+
+        End Function
+
+        Public Sub Displaycard()
+            For x = 0 To 2
+                For y = 0 To 8
+                    Console.Write(numbers(x, y) & ",")
+
+                Next y
+                Console.WriteLine()
+            Next x
+        End Sub
+
+        Private Function AssignRowPlaces() As Integer()
+            Dim numberCount As Integer
+            Dim row(4) As Integer
+            Dim match As Boolean
+            For x = 0 To 4
+                row(x) = -1
+            Next
+            Do While numberCount <= 4
+                match = False
+                row(numberCount) = repo.NewRandom(0, 8)
+                numberCount += 1
+                For x = 0 To 4
+                    If row(numberCount - 1) = row(x) And numberCount - 1 <> x Then
+
+                        match = True
+                    End If
+                Next
+                If match Then
+                    numberCount -= 1
+                End If
+
+            Loop
+            row = rearrage(row, 4)
+            Return row
+        End Function
+
+        Private Function rearrage(ByVal dataSet As Integer(), ByVal size As Integer) As Integer()
+
+            Dim i, j As Integer
+            For i = 0 To size - 1
+                For j = 0 To size - 1
+                    If (dataSet(j) > dataSet(j + 1)) Then
+                        Dim temp As Integer = dataSet(j)
+                        dataSet(j) = dataSet(j + 1)
+                        dataSet(j + 1) = temp
+                    End If
+                Next
+            Next
+            Return dataSet
+        End Function
+
+
+        Public Overridable Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
+            Dim matched As Integer
+            For x = 0 To 2
+                For y = 0 To 8
+                    If numbers(x, y) <> 0 Then
+
+                        For z = 0 To tail
+                            If numbers(x, y) = calledNumbers(z) Then
+                                matched += 1
+                            End If
+                        Next
+                    End If
+
+                Next
+            Next
+            Return matched
+        End Function
+
+
+
+
+    End Class
+
+    Class BingoBonusCard
+        Inherits BingoCard
+
+        Public Overrides Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
+            Dim matched As Integer
+            matched = FullHouse(calledNumbers, tail)
+            If matched = 15 Then
+                Return 1
+            End If
+
+
+
+            Console.WriteLine("You only matched " & matched)
+            Return 0
+        End Function
+
+        Private Function FullHouse(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
+            Dim matched As Integer
+            For x = 0 To 2
+                For y = 0 To 8
+                    If numbers(x, y) <> 0 Then
+                        For z = 0 To tail
+                            If numbers(x, y) = calledNumbers(z) Then
+                                matched += 1
+                            End If
+                        Next
+                    End If
+
+                Next
+            Next
+            Return matched
+        End Function
+
+
+    End Class
+
+
+    Class NumberMachine
+        Private numberOrder(74) As Integer
+        Private current As Integer
+        Private back As Integer = 74
+
+
+        Public Sub New()
+            Dim temp, num1, num2 As Integer
+            For x = 1 To 75
+                numberOrder(x - 1) = x
+            Next x
+
+            For x = 1 To 1000
+                num1 = repo.NewRandom(0, 74)
+                num2 = repo.NewRandom(0, 74)
+
+                temp = numberOrder(num1)
+                numberOrder(num1) = numberOrder(num2)
+                numberOrder(num2) = temp
+            Next
+        End Sub
+
+        Public Sub PracticeGame()
+            numberOrder(0) = 4
+            numberOrder(1) = 11
+            numberOrder(2) = 5
+            numberOrder(3) = 57
+            numberOrder(4) = 65
+            numberOrder(5) = 33
+            numberOrder(6) = 48
+            numberOrder(7) = 58
+            numberOrder(8) = 68
+            numberOrder(9) = 78
+            numberOrder(10) = 47
+            numberOrder(11) = 18
+            numberOrder(12) = 50
+            numberOrder(13) = 59
+            numberOrder(14) = 80
+            numberOrder(15) = 81
+
+        End Sub
+
+        Public Function nextBall() As Integer
+            If current < back Then
+                current += 1
+
+                Return numberOrder(current - 1)
+            Else
+                Return -1
+            End If
+
+        End Function
+
+        Public Function getNumbers() As Integer()
+            Return numberOrder
+        End Function
+        Public Function getBack() As Integer
+            Return current
+        End Function
+
+    End Class
+
+
+    Class repo
+        Public Shared Function NewRandom(ByVal lowerbound As Integer, ByVal upperbound As Integer)
+            Return CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
+
+        End Function
+    End Class
+
+End Module
