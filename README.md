@@ -7,6 +7,13 @@ Prerelease code for February 2019
 - [BingoBonusCard](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/BingoBonusCard.vb)
 - [NumberMachine](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/NumberMachine.vb)
 - [repo](https://github.com/aleksandr-isaev/febCode2019/blob/master/Skeleton%20Code%20feb2019/Skeleton%20Code%20feb2019/repo.vb)
+## Quick Access - Errors/Additions Code
+- [Module1](https://github.com/aleksandr-isaev/febCode2019/blob/master/Feb2019Code/Feb2019Code/Module1.vb)
+- [BingoGame](https://github.com/aleksandr-isaev/febCode2019/blob/master/Feb2019Code/Feb2019Code/BingoGame.vb)
+- [BingoCard](https://github.com/aleksandr-isaev/febCode2019/blob/master/Feb2019Code/Feb2019Code/BingoCard.vb)
+- [BingoBonusCard](https://github.com/aleksandr-isaev/febCode2019/blob/master/Feb2019Code/Feb2019Code/BingoBonusCard.vb)
+- [NumberMachine](https://github.com/aleksandr-isaev/febCode2019/blob/master/Feb2019Code/Feb2019Code/NumberMachine.vb)
+- [repo](https://github.com/aleksandr-isaev/febCode2019/blob/master/Feb2019Code/Feb2019Code/repo.vb)
 ## Projects
 Things to do for the prerelease. Add anything to "To Do", if you want to start on one of the tasks move it to "In Progress" and add you name. Once done put the card into "Done"
 - [Errors](https://github.com/aleksandr-isaev/febCode2019/projects/1)
