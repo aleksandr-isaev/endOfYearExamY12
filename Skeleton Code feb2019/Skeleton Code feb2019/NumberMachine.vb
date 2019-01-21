@@ -1,26 +1,26 @@
 ﻿Class NumberMachine
-    Private numberOrder(74) As Integer
-    Private current As Integer
-    Private back As Integer = 74
+    Private numberOrder(74) As Integer ' bingo balls 
+    Private current As Integer ' current number of bingo balls shown
+    Private back As Integer = 74 ' number of bingo balls
 
 
     Public Sub New()
         Dim temp, num1, num2 As Integer
         For x = 1 To 75
-            numberOrder(x - 1) = x
+            numberOrder(x - 1) = x ' sets numberOrder from 1 to 75
         Next x
 
         For x = 1 To 1000
-            num1 = repo.NewRandom(0, 74)
-            num2 = repo.NewRandom(0, 74)
-
-            temp = numberOrder(num1)
-            numberOrder(num1) = numberOrder(num2)
-            numberOrder(num2) = temp
+            num1 = repo.NewRandom(0, 74) ' random number assigned to num1
+            num2 = repo.NewRandom(0, 74) ' random number assigned to num2
+            ' switches numberOrder(num1) with numberOrder(num2)
+            temp = numberOrder(num1) ' integer in numberOrder with position of num1 is assigned to temp
+            numberOrder(num1) = numberOrder(num2) ' integer in numberOrder with position of num2 is assigned to numberOrder(num1)
+            numberOrder(num2) = temp ' integer in temp is assigned to numberOrder(num2)
         Next
     End Sub
 
-    Public Sub PracticeGame()
+    Public Sub PracticeGame() ' set order of bingo balls
         numberOrder(0) = 4
         numberOrder(1) = 11
         numberOrder(2) = 5
@@ -41,12 +41,12 @@
     End Sub
 
     Public Function nextBall() As Integer
-        If current < back Then
-            current += 1
+        If current < back Then ' if current is more than the original number it will stop showing
+            current += 1 ' number of bingo balls shown
 
-            Return numberOrder(current - 1)
+            Return numberOrder(current - 1) ' shows next bingo ball
         Else
-            Return -1
+            Return -1 ' returns -1 if ran out of bingo balls
         End If
 
     End Function
