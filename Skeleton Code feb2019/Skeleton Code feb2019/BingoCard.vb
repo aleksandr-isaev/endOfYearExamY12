@@ -4,7 +4,7 @@
     Public Sub New()
         numbers = AssignNumbers()
     End Sub
-    Private Function AssignNumbers() As Integer(,)
+    Private Function AssignNumbers() As Integer(,) 'assigns the numbers in the bungo card
         'Randomize()
         Dim row1(4) As Integer
         Dim row2(4) As Integer
@@ -44,7 +44,7 @@
 
     End Function
 
-    Public Sub Displaycard()
+    Public Sub Displaycard() 'prints the card
         For x = 0 To 2
             For y = 0 To 8
                 Console.Write(numbers(x, y) & ",")

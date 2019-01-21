@@ -68,6 +68,8 @@
         Console.WriteLine("and the next ball is.....")
         If Caller = 11 Then
             Console.WriteLine("legs 11")
+        ElseIf Caller = 22 Then
+            Console.WriteLine("two little ducks")
         Else
             Console.WriteLine(Caller)
         End If

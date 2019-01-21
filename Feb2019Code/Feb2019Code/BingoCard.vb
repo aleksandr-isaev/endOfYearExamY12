@@ -47,7 +47,13 @@
     Public Sub Displaycard()
         For x = 0 To 2
             For y = 0 To 8
-                Console.Write(numbers(x, y) & ",")
+                ' Console.Write(numbers(x, y) & ",")
+                If Len(CStr(numbers(x, y))) = 2 Then
+                    Console.Write(numbers(x, y) & ",")
+                ElseIf Len(CStr((numbers(x, y)))) = 1 Then
+                    Console.Write(" " & numbers(x, y) & ",")
+                End If
+
 
             Next y
             Console.WriteLine()
