@@ -18,7 +18,7 @@
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             won = Console.ReadLine()
-            Console.Clear()
+            Console.Clear() ' removes all text from console
             playerCard.Displaycard()
         Loop Until won
 

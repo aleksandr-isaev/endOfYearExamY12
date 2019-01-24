@@ -1,5 +1,5 @@
 ﻿Public Class BingoCard
-    Protected numbers(2, 8) As Integer
+    Protected numbers(2, 8) As Integer ' numbers on card
 
     Public Sub New()
         numbers = AssignNumbers()
