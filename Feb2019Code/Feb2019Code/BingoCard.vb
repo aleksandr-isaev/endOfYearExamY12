@@ -5,7 +5,7 @@
         numbers = AssignNumbers()
     End Sub
     Private Function AssignNumbers() As Integer(,)
-        'Randomize()
+        Randomize()
         Dim row1(4) As Integer
         Dim row2(4) As Integer
         Dim row3(4) As Integer
