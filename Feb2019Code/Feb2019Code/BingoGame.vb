@@ -1,5 +1,6 @@
 ﻿Public Class BingoGame
     Dim numbers As New NumberMachine
+    Dim round As Integer = 0
 
     Public Sub New()
         Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
@@ -13,11 +14,24 @@
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
 
+
         Do
             Caller()
             Console.WriteLine("Did you win?")
+
             Console.WriteLine("Enter 1 for yes and 0 for no?")
-            won = Console.ReadLine()
+            Do
+
+                Try
+                    won = Console.ReadLine()
+                Catch ex As Exception
+                    Console.WriteLine("That was not a valid option. Please enter 1 or 0")
+                    won = Console.ReadLine()
+                End Try
+
+            Loop Until won = "0" Or won = "1"
+
+
             Console.Clear()
             playerCard.Displaycard()
         Loop Until won
@@ -42,8 +56,20 @@
         Do
             Console.WriteLine("**BINGO BONUS**")
             Caller()
+
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
+            Do
+
+                Try
+                    won = Console.ReadLine()
+                Catch ex As Exception
+                    Console.WriteLine("That was not a valid option. Please enter 1 or 0")
+                    won = Console.ReadLine()
+                End Try
+
+            Loop Until won = "0" Or won = "1"
+
             won = Console.ReadLine()
             Console.Clear()
             playerCard.Displaycard()
@@ -65,7 +91,13 @@
 
     Private Function Caller() As Integer
         Caller = numbers.nextBall
-        Console.WriteLine("and the next ball is.....")
+        If round = 0 Then
+            Console.WriteLine("The first ball is ... ")
+            round = round + 1
+        Else
+            Console.WriteLine("and the next ball is.....")
+            round = round + 1
+        End If
         If Caller = 11 Then
             Console.WriteLine("legs 11")
         ElseIf Caller = 22 Then
@@ -78,8 +110,11 @@
     Public Function Menu() As Boolean
         Dim choice As Integer
         Do
-            MenuOptions()
-            choice = Console.ReadLine()
+            Try
+                MenuOptions()
+                choice = Console.ReadLine()
+            Catch ex As Exception
+            End Try
 
             Select Case choice
                 Case 0
