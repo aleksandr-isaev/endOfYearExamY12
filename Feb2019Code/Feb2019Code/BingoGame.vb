@@ -109,28 +109,31 @@
 
     Public Function Menu() As Boolean
         Dim choice As Integer
-        Do
-            Try
-                MenuOptions()
-                choice = Console.ReadLine()
-            Catch ex As Exception
-            End Try
 
-            Select Case choice
-                Case 0
-                    Console.WriteLine("Goodbye")
-                Case 1
-                    PlayGame()
-                Case 2
-                    PlayBonusGame()
-                Case 3
-                    numbers.PracticeGame()
-                    Console.Clear()
-                    Console.WriteLine("Practice Game Initiated")
-                Case Else
-                    Console.WriteLine("Not an Option")
-            End Select
-        Loop Until choice = 1 Or choice = 2 Or choice = 0
+
+        Do
+                Try
+                    MenuOptions()
+                    choice = Console.ReadLine()
+                Catch ex As Exception
+                End Try
+
+                Select Case choice
+                    Case 0
+                        Console.WriteLine("Goodbye")
+                    Case 1
+                        PlayGame()
+                    Case 2
+                        PlayBonusGame()
+                    Case 3
+                        numbers.PracticeGame()
+                        Console.Clear()
+                        Console.WriteLine("Practice Game Initiated")
+                    Case Else
+                        Console.WriteLine("Not an Option")
+                End Select
+            Loop Until choice = 1 Or choice = 2 Or choice = 0
+
         Return True
     End Function
 
