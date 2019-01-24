@@ -1,5 +1,6 @@
 ﻿Public Class BingoGame
     Dim numbers As New NumberMachine
+    Dim round As Integer = 0
 
     Public Sub New()
         Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
@@ -12,6 +13,7 @@
         Dim won As Boolean
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
+
 
         Do
             Caller()
@@ -89,7 +91,13 @@
 
     Private Function Caller() As Integer
         Caller = numbers.nextBall
-        Console.WriteLine("and the next ball is.....")
+        If round = 0 Then
+            Console.WriteLine("The first ball is ... ")
+            round = round + 1
+        Else
+            Console.WriteLine("and the next ball is.....")
+            round = round + 1
+        End If
         If Caller = 11 Then
             Console.WriteLine("legs 11")
         ElseIf Caller = 22 Then
