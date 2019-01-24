@@ -16,8 +16,20 @@
         Do
             Caller()
             Console.WriteLine("Did you win?")
+
             Console.WriteLine("Enter 1 for yes and 0 for no?")
-            won = Console.ReadLine()
+            Do
+
+                Try
+                    won = Console.ReadLine()
+                Catch ex As Exception
+                    Console.WriteLine("That was not a valid option. Please enter 1 or 0")
+                    won = Console.ReadLine()
+                End Try
+
+            Loop Until won = "0" Or won = "1"
+
+
             Console.Clear()
             playerCard.Displaycard()
         Loop Until won
@@ -42,8 +54,20 @@
         Do
             Console.WriteLine("**BINGO BONUS**")
             Caller()
+
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
+            Do
+
+                Try
+                    won = Console.ReadLine()
+                Catch ex As Exception
+                    Console.WriteLine("That was not a valid option. Please enter 1 or 0")
+                    won = Console.ReadLine()
+                End Try
+
+            Loop Until won = "0" Or won = "1"
+
             won = Console.ReadLine()
             Console.Clear()
             playerCard.Displaycard()
@@ -78,8 +102,11 @@
     Public Function Menu() As Boolean
         Dim choice As Integer
         Do
-            MenuOptions()
-            choice = Console.ReadLine()
+            Try
+                MenuOptions()
+                choice = Console.ReadLine()
+            Catch ex As Exception
+            End Try
 
             Select Case choice
                 Case 0

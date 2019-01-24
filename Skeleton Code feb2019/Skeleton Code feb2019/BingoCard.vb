@@ -4,7 +4,7 @@
     Public Sub New()
         numbers = AssignNumbers()
     End Sub
-    Private Function AssignNumbers() As Integer(,) 'assigns the numbers in the bungo card
+    Private Function AssignNumbers() As Integer(,) 'assigns the numbers in the bingo card
         'Randomize()
         Dim row1(4) As Integer
         Dim row2(4) As Integer
