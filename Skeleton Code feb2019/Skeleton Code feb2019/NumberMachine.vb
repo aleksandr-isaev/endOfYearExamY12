@@ -50,7 +50,6 @@
         End If
 
     End Function
-
     Public Function getNumbers() As Integer()
         Return numberOrder
     End Function
