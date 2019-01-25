@@ -34,12 +34,9 @@
             Else
                 base = (cardnumbers(1, row3(x)) Mod 10) + 1
             End If
-
-
             base = repo.NewRandom(base, 10)
             cardnumbers(2, row3(x)) = base + (10 * row3(x))
         Next
-
         Return cardnumbers
 
     End Function
@@ -53,8 +50,6 @@
                 ElseIf Len(CStr((numbers(x, y)))) = 1 Then
                     Console.Write(" " & numbers(x, y) & ",")
                 End If
-
-
             Next y
             Console.WriteLine()
         Next x
@@ -71,12 +66,14 @@
             match = False
             row(numberCount) = repo.NewRandom(0, 8)
             numberCount += 1
+
             For x = 0 To 4
                 If row(numberCount - 1) = row(x) And numberCount - 1 <> x Then
 
                     match = True
                 End If
             Next
+
             If match Then
                 numberCount -= 1
             End If
@@ -87,7 +84,6 @@
     End Function
 
     Private Function rearrage(ByVal dataSet As Integer(), ByVal size As Integer) As Integer()
-
         Dim i, j As Integer
         For i = 0 To size - 1
             For j = 0 To size - 1
@@ -114,7 +110,6 @@
                         End If
                     Next
                 End If
-
             Next
         Next
         Return matched

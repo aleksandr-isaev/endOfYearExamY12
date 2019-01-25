@@ -43,18 +43,16 @@
     Public Function nextBall() As Integer
         If current < back Then
             current += 1
-
             Return numberOrder(current - 1)
         Else
-
             Return -1
         End If
-
     End Function
 
     Public Function getNumbers() As Integer()
         Return numberOrder
     End Function
+
     Public Function getBack() As Integer
         Return current
     End Function
