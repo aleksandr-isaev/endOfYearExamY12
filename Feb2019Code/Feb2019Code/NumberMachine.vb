@@ -46,6 +46,7 @@
 
             Return numberOrder(current - 1)
         Else
+
             Return -1
         End If
 

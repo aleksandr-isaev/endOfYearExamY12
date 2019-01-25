@@ -2,6 +2,7 @@
     Dim numbers As New NumberMachine
     Dim round As Integer = 0
 
+
     Public Sub New()
         Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
         Console.WriteLine("*        B-I-N-G-O S-I-M      *")
@@ -15,35 +16,36 @@
         Console.WriteLine("Eyes Down... ")
 
 
+
         Do
-            Caller()
-            Console.WriteLine("Did you win?")
+                Caller()
+                Console.WriteLine("Did you win?")
 
-            Console.WriteLine("Enter 1 for yes and 0 for no?")
-            Do
+                Console.WriteLine("Enter 1 for yes and 0 for no?")
+                Do
 
-                Try
-                    won = Console.ReadLine()
-                Catch ex As Exception
-                    Console.WriteLine("That was not a valid option. Please enter 1 or 0")
-                    won = Console.ReadLine()
-                End Try
+                    Try
+                        won = Console.ReadLine()
+                    Catch ex As Exception
+                        Console.WriteLine("That was not a valid option. Please enter 1 or 0")
+                        won = Console.ReadLine()
+                    End Try
 
-            Loop Until won = "0" Or won = "1"
+                Loop Until won = "0" Or won = "1"
 
 
-            Console.Clear()
-            playerCard.Displaycard()
-        Loop Until won
+                Console.Clear()
+                playerCard.Displaycard()
+            Loop Until won
+            Console.WriteLine("You have matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
+            If playerCard.GameOver(numbers.getNumbers, numbers.getBack) = 15 Then
+                Console.WriteLine("Yes you have won!")
+            Else
+                Console.WriteLine("Sorry you stopped too early")
+                Console.WriteLine("You only matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
+                Console.WriteLine("GAME OVER")
+            End If
 
-        Console.WriteLine("You have matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
-        If playerCard.GameOver(numbers.getNumbers, numbers.getBack) = 15 Then
-            Console.WriteLine("Yes you have won!")
-        Else
-            Console.WriteLine("Sorry you stopped too early")
-            Console.WriteLine("You only matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
-            Console.WriteLine("GAME OVER")
-        End If
 
     End Sub
 
@@ -94,6 +96,9 @@
         If round = 0 Then
             Console.WriteLine("The first ball is ... ")
             round = round + 1
+        ElseIf Caller = -1 Then
+            Console.WriteLine("Sorry there are no more available numbers left in the game")
+
         Else
             Console.WriteLine("and the next ball is.....")
             round = round + 1
