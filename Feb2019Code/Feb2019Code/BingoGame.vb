@@ -103,6 +103,7 @@
             Select Case choice
                 Case 0
                     Console.WriteLine("Goodbye")
+                    Return False
                 Case 1
                     PlayGame()
                 Case 2
