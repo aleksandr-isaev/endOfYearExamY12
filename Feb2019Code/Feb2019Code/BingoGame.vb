@@ -60,7 +60,6 @@
                     won = Console.ReadLine()
                 End Try
             Loop Until won = "0" Or won = "1"
-            won = Console.ReadLine()
             Console.Clear()
             playerCard.Displaycard()
         Loop Until won
@@ -108,17 +107,20 @@
                     Console.WriteLine("Goodbye")
                     Return False
                 Case 1
+                    Console.Clear()
                     PlayGame()
                 Case 2
+                    Console.Clear()
                     PlayBonusGame()
                 Case 3
                     numbers.PracticeGame()
                     Console.Clear()
                     Console.WriteLine("Practice Game Initiated")
+                    PlayGame()
                 Case Else
                     Console.WriteLine("Not an Option")
             End Select
-        Loop Until choice = 1 Or choice = 2 Or choice = 0
+        Loop Until choice = 1 Or choice = 2 Or choice = 0 Or choice = 3
         Return True
     End Function
 
