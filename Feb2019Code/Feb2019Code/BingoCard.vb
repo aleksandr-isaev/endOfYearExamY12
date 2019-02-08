@@ -46,15 +46,27 @@
             For y = 0 To 8
                 ' Console.Write(numbers(x, y) & ",")
                 If Len(CStr(numbers(x, y))) = 2 Then
-                    Console.Write(numbers(x, y) & ",")
+                    If numbers(x, y) = -1 Then
+                        Console.Write(" X,")
+                    Else
+                        Console.Write(numbers(x, y) & ",")
+                    End If
                 ElseIf Len(CStr((numbers(x, y)))) = 1 Then
-                    Console.Write(" " & numbers(x, y) & ",")
-                End If
+                        Console.Write(" " & numbers(x, y) & ",")
+                    End If
             Next y
             Console.WriteLine()
         Next x
     End Sub
-
+    Public Sub removenumbers(ByVal callernum As Integer)
+        For x = 0 To 2
+            For y = 0 To 8
+                If numbers(x, y) = callernum Then
+                    numbers(x, y) = -1
+                End If
+            Next
+        Next
+    End Sub
     Private Function AssignRowPlaces() As Integer()
         Dim numberCount As Integer
         Dim row(4) As Integer

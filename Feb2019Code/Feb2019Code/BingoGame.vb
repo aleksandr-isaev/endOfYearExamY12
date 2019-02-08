@@ -1,6 +1,7 @@
 ﻿Public Class BingoGame
     Dim numbers As New NumberMachine
     Dim round As Integer = 0
+    Dim callernum As Integer
 
 
     Public Sub New()
@@ -15,7 +16,8 @@
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
         Do
-                Caller()
+            Caller()
+            playerCard.removenumbers(callernum)
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
@@ -47,6 +49,7 @@
         Do
             Console.WriteLine("**BINGO BONUS**")
             Caller()
+            playerCard.removenumbers(callernum)
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
@@ -73,22 +76,22 @@
     End Sub
 
     Private Function Caller() As Integer
-        Caller = numbers.nextBall
+        callernum = numbers.nextBall
         If round = 0 Then
             Console.WriteLine("The first ball is ... ")
             round = round + 1
-        ElseIf Caller = -1 Then
+        ElseIf Callernum = -1 Then
             Console.WriteLine("Sorry there are no more available numbers left in the game")
         Else
             Console.WriteLine("and the next ball is.....")
             round = round + 1
         End If
-        If Caller = 11 Then
+        If callernum = 11 Then
             Console.WriteLine("legs 11")
-        ElseIf Caller = 22 Then
+        ElseIf callernum = 22 Then
             Console.WriteLine("two little ducks")
         Else
-            Console.WriteLine(Caller)
+            Console.WriteLine(callernum)
         End If
     End Function
 
