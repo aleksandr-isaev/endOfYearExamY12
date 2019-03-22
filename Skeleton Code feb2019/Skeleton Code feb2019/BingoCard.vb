@@ -81,7 +81,7 @@
     End Function
 
     Private Function rearrage(ByVal dataSet As Integer(), ByVal size As Integer) As Integer()
-
+        ' makes order on row of bingo card from smallest to largest
         Dim i, j As Integer
         For i = 0 To size - 1
             For j = 0 To size - 1
@@ -94,7 +94,6 @@
         Next
         Return dataSet
     End Function
-
 
     Public Overridable Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
         Dim matched As Integer
