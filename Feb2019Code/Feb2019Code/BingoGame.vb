@@ -1,7 +1,7 @@
 ﻿Public Class BingoGame
     Dim numbers As New NumberMachine
-    Dim round As Integer = 0
-    Dim callernum As Integer
+    Dim round As Integer = 0 'added
+    Dim callernum As Integer 'added
 
 
     Public Sub New()
@@ -17,11 +17,11 @@
         Console.WriteLine("Eyes Down... ")
         Do
             Caller()
-            playerCard.removenumbers(callernum)
+            playerCard.removenumbers(callernum) 'added
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
-                Try
+                Try 'added try catc
                     won = Console.ReadLine()
                 Catch ex As Exception
                     Console.WriteLine("That was not a valid option. Please enter 1 or 0")
@@ -49,17 +49,18 @@
         Do
             Console.WriteLine("**BINGO BONUS**")
             Caller()
-            playerCard.removenumbers(callernum)
+            playerCard.removenumbers(callernum) 'added
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
-                Try
+                Try 'add try catch
                     won = Console.ReadLine()
                 Catch ex As Exception
                     Console.WriteLine("That was not a valid option. Please enter 1 or 0")
                     won = Console.ReadLine()
                 End Try
             Loop Until won = "0" Or won = "1"
+            'won = console.readline() 'removed this
             Console.Clear()
             playerCard.Displaycard()
         Loop Until won
@@ -75,29 +76,30 @@
     End Sub
 
     Private Function Caller() As Integer
-        callernum = numbers.nextBall
-        If round = 0 Then
-            Console.WriteLine("The first ball is ... ")
-            round = round + 1
-        ElseIf Callernum = -1 Then
-            Console.WriteLine("Sorry there are no more available numbers left in the game")
+        'caller = numbers.nextBall 'removed line
+        callernum = numbers.nextBall 'added
+        If round = 0 Then 'added
+            Console.WriteLine("The first ball is ... ") 'added
+            round = round + 1 'added
+        ElseIf callernum = -1 Then 'changed from caller to callernum
+            Console.WriteLine("Sorry there are no more available numbers left in the game") 'added
         Else
             Console.WriteLine("and the next ball is.....")
             round = round + 1
         End If
-        If callernum = 11 Then
+        If callernum = 11 Then 'changed from caller to callernum
             Console.WriteLine("legs 11")
-        ElseIf callernum = 22 Then
-            Console.WriteLine("two little ducks")
+        ElseIf callernum = 22 Then 'added 'changed from caller to callernum
+            Console.WriteLine("two little ducks") 'added
         Else
-            Console.WriteLine(callernum)
+            Console.WriteLine(callernum) 'changed from caller to callernum
         End If
     End Function
 
     Public Function Menu() As Boolean
         Dim choice As Integer
         Do
-            Try
+            Try 'added try catch
                 MenuOptions()
                 choice = Console.ReadLine()
             Catch ex As Exception
@@ -105,22 +107,22 @@
             Select Case choice
                 Case 0
                     Console.WriteLine("Goodbye")
-                    Return False
+                    Return False 'added to fix error when enter 0 in menu
                 Case 1
-                    Console.Clear()
+                    Console.Clear() 'added
                     PlayGame()
                 Case 2
-                    Console.Clear()
+                    Console.Clear() 'added
                     PlayBonusGame()
                 Case 3
                     numbers.PracticeGame()
                     Console.Clear()
                     Console.WriteLine("Practice Game Initiated")
-                    PlayGame()
+                    PlayGame() 'added
                 Case Else
                     Console.WriteLine("Not an Option")
             End Select
-        Loop Until choice = 1 Or choice = 2 Or choice = 0 Or choice = 3
+        Loop Until choice = 1 Or choice = 2 Or choice = 0 Or choice = 3 'added choice = 3
         Return True
     End Function
 

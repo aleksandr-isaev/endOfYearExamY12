@@ -1,9 +1,9 @@
 ﻿Module Module1
 
     Sub Main()
-        Dim loopCount As Integer = 0
+        Dim loopCount As Integer = 0 'added to allow them to play games as many as they want
         Dim NewBingoGame As New BingoGame
-        If NewBingoGame.Menu() = True Then
+        If NewBingoGame.Menu() = True Then 'added = True
 
             Do
                 Console.WriteLine("Do you want to play again? - Y or N")
@@ -11,9 +11,9 @@
                     NewBingoGame.Menu()
 
                 Else
-                    loopCount = 1
+                    loopCount = 1 'added
                 End If
-            Loop Until loopCount = 1
+            Loop Until loopCount = 1 'added
 
         End If
         Console.ReadLine()
