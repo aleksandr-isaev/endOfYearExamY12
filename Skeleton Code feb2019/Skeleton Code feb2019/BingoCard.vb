@@ -1,10 +1,10 @@
 ﻿Public Class BingoCard
-    Protected numbers(2, 8) As Integer
+    Protected numbers(2, 8) As Integer ' numbers on card
 
     Public Sub New()
         numbers = AssignNumbers()
     End Sub
-    Private Function AssignNumbers() As Integer(,)
+    Private Function AssignNumbers() As Integer(,) 'assigns the numbers in the bingo card
         'Randomize()
         Dim row1(4) As Integer
         Dim row2(4) As Integer
@@ -46,7 +46,7 @@
 
     End Function
 
-    Public Sub Displaycard()
+    Public Sub Displaycard() 'prints the card
         For x = 0 To 2
             For y = 0 To 8
                 Console.Write(numbers(x, y) & ",")
@@ -83,7 +83,7 @@
     End Function
 
     Private Function rearrage(ByVal dataSet As Integer(), ByVal size As Integer) As Integer()
-
+        ' makes order on row of bingo card from smallest to largest
         Dim i, j As Integer
         For i = 0 To size - 1
             For j = 0 To size - 1
@@ -96,7 +96,6 @@
         Next
         Return dataSet
     End Function
-
 
     Public Overridable Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
         Dim matched As Integer

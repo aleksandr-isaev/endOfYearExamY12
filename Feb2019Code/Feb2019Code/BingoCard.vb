@@ -5,7 +5,7 @@
         numbers = AssignNumbers()
     End Sub
     Private Function AssignNumbers() As Integer(,)
-        'Randomize()
+        Randomize()
         Dim row1(4) As Integer
         Dim row2(4) As Integer
         Dim row3(4) As Integer
@@ -34,12 +34,9 @@
             Else
                 base = (cardnumbers(1, row3(x)) Mod 10) + 1
             End If
-
-
             base = repo.NewRandom(base, 10)
             cardnumbers(2, row3(x)) = base + (10 * row3(x))
         Next
-
         Return cardnumbers
 
     End Function
@@ -47,13 +44,29 @@
     Public Sub Displaycard()
         For x = 0 To 2
             For y = 0 To 8
-                Console.Write(numbers(x, y) & ",")
-
+                ' Console.Write(numbers(x, y) & ",")
+                If Len(CStr(numbers(x, y))) = 2 Then 'this if statement is for spacing and alignment of the board
+                    If numbers(x, y) = -1 Then 'added this nested IF statement in order to display X when the number is picked
+                        Console.Write(" X,")
+                    Else
+                        Console.Write(numbers(x, y) & ",")
+                    End If
+                ElseIf Len(CStr((numbers(x, y)))) = 1 Then
+                    Console.Write(" " & numbers(x, y) & ",")
+                    End If
             Next y
             Console.WriteLine()
         Next x
     End Sub
-
+    Public Sub removenumbers(ByVal callernum As Integer) 'added sub for when number is picked
+        For x = 0 To 2
+            For y = 0 To 8
+                If numbers(x, y) = callernum Then
+                    numbers(x, y) = -1
+                End If
+            Next
+        Next
+    End Sub
     Private Function AssignRowPlaces() As Integer()
         Dim numberCount As Integer
         Dim row(4) As Integer
@@ -65,12 +78,14 @@
             match = False
             row(numberCount) = repo.NewRandom(0, 8)
             numberCount += 1
+
             For x = 0 To 4
                 If row(numberCount - 1) = row(x) And numberCount - 1 <> x Then
 
                     match = True
                 End If
             Next
+
             If match Then
                 numberCount -= 1
             End If
@@ -81,7 +96,6 @@
     End Function
 
     Private Function rearrage(ByVal dataSet As Integer(), ByVal size As Integer) As Integer()
-
         Dim i, j As Integer
         For i = 0 To size - 1
             For j = 0 To size - 1
@@ -108,7 +122,6 @@
                         End If
                     Next
                 End If
-
             Next
         Next
         Return matched
