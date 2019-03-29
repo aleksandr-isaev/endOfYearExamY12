@@ -14,7 +14,9 @@
         row1 = AssignRowPlaces()
         row2 = AssignRowPlaces()
         row3 = AssignRowPlaces()
-
+        For x = 0 To 4
+            Console.WriteLine(row1(x))
+        Next
         For x = 0 To 4
             cardnumbers(0, row1(x)) = repo.NewRandom(1, 8) + (10 * row1(x))
         Next
