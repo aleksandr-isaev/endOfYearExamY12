@@ -2,7 +2,8 @@
     Dim numbers As New NumberMachine
     Dim round As Integer = 0 'added
     Dim callernum As Integer 'added
-    Dim stringset As String = "" 'added
+    Dim stringsetGame As String = "" 'added
+    Dim stringsetBonus As String = "" 'added
 
 
     Public Sub New()
@@ -21,8 +22,8 @@
             responser = CStr(Caller()) 'added responser = cstr()
             playerCard.removenumbers(callernum) 'added
             Console.WriteLine("The numbers rolled so far are: ") 'added
-            stringset = stringset + (responser) + " " 'added
-            Console.WriteLine(stringset) 'added
+            stringsetGame = stringsetGame + (responser) + " " 'added
+            Console.WriteLine(stringsetGame) 'added
 
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
@@ -50,12 +51,16 @@
     Public Sub PlayBonusGame()
         Dim playerCard As New BingoBonusCard
         Dim won As Boolean
+        Dim responser As String ' added
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
         Do
             Console.WriteLine("**BINGO BONUS**")
-            Caller()
+            responser = CStr(Caller()) 'added responser = cstr()
             playerCard.removenumbers(callernum) 'added
+            Console.WriteLine("The numbers rolled so far are: ") 'added
+            stringsetBonus = stringsetBonus + (responser) + " " 'added
+            Console.WriteLine(stringsetBonus) 'added
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
