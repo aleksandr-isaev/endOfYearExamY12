@@ -2,6 +2,7 @@
     Dim numbers As New NumberMachine
     Dim round As Integer = 0 'added
     Dim callernum As Integer 'added
+    Dim stringset As String = "" 'added
 
 
     Public Sub New()
@@ -13,11 +14,16 @@
     Public Sub PlayGame()
         Dim playerCard As New BingoCard
         Dim won As Boolean
+        Dim responser As String 'added
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
         Do
-            Caller()
+            responser = CStr(Caller()) 'added responser = cstr()
             playerCard.removenumbers(callernum) 'added
+            Console.WriteLine("The numbers rolled so far are: ") 'added
+            stringset = stringset + (responser) + " " 'added
+            Console.WriteLine(stringset) 'added
+
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
@@ -81,6 +87,7 @@
         If round = 0 Then 'added
             Console.WriteLine("The first ball is ... ") 'added
             round = round + 1 'added
+
         ElseIf callernum = -1 Then 'changed from caller to callernum
             Console.WriteLine("Sorry there are no more available numbers left in the game") 'added
         Else
@@ -94,6 +101,7 @@
         Else
             Console.WriteLine(callernum) 'changed from caller to callernum
         End If
+        Return callernum 'added
     End Function
 
     Public Function Menu() As Boolean
