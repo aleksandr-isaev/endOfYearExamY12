@@ -127,18 +127,26 @@
                     Console.Clear()
                     Console.WriteLine("Practice Game Initiated")
                     PlayGame() 'added
+                Case 4
+                    Instructions()
                 Case Else
                     Console.WriteLine("Not an Option")
             End Select
         Loop Until choice = 1 Or choice = 2 Or choice = 0 Or choice = 3 'added choice = 3
         Return True
     End Function
+    Public Sub instructions()
+        Console.WriteLine("The rules")
+        Console.WriteLine("The game is typically won by winning a full house")
+        Console.WriteLine("If you are playing BINGO BONUS you can also win by having all 4 corners or a horizonal line of 5 numbers on the ticket")
+    End Sub
 
     Public Sub MenuOptions()
         Console.WriteLine("---------------------------------------")
         Console.WriteLine("Choose 1 play Bingo")
         Console.WriteLine("Choose 2 play Bingo Bonus")
         Console.WriteLine("Choose 3 play practice game")
+        Console.WriteLine("Choose 4 for the instructions")
         Console.WriteLine("Choose 0 to exit")
     End Sub
 
