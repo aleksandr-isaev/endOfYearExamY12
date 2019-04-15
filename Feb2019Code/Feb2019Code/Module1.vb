@@ -7,7 +7,7 @@
 
             Do
                 Console.WriteLine("Do you want to play again? - Y or N")
-                If Console.ReadLine = "Y" Then
+                If UCase(Console.ReadLine) = "Y" Then
                     NewBingoGame.Menu()
 
                 Else
@@ -16,7 +16,6 @@
             Loop Until loopCount = 1 'added
 
         End If
-        Console.ReadLine()
     End Sub
 
 End Module
