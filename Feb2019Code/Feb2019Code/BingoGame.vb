@@ -28,7 +28,7 @@
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
-                Try 'added try catc
+                Try 'added try catch
                     won = Console.ReadLine()
                 Catch ex As Exception
                     Console.WriteLine("That was not a valid option. Please enter 1 or 0")
