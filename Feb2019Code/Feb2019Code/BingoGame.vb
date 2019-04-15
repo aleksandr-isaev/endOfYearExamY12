@@ -4,10 +4,10 @@ Public Class BingoGame
     Private winCounter As Integer = 0
     Private lossCounter As Integer = 0
     Private numbers As New NumberMachine
-    Private round As Integer = 0 'added
-    Private callernum As Integer 'added
-    Private stringsetGame As String = "" 'added
-    Private stringsetBonus As String = "" 'added
+    Private round As Integer = 0 'added so we can have correct grammer for the first ball - first ball is ... instead of next ball is for round 1
+    Private callernum As Integer 'added variable (same name as caller (current variable name and the name of the function it is in) which contains value of next number being called
+    Private stringsetGame As String = "" 'added - string that stores all the numbers previously called in the normal bingo game
+    Private stringsetBonus As String = "" 'added - string that stores all the numbers previously called in the bingo bonus game
 
 
     Public Sub New()
@@ -19,21 +19,21 @@ Public Class BingoGame
     Public Sub PlayGame()
         Dim playerCard As New BingoCard
         Dim won As Boolean
-        Dim responser As String 'added
+        Dim responser As String 'added - converts the number that is currently being called into string to be added to the list of numbers stored
         stringsetGame = ""
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
         Do
-            responser = CStr(Caller()) 'added responser = cstr()
-            playerCard.removenumbers(callernum) 'added
-            Console.WriteLine("The numbers rolled so far are: ") 'added
-            stringsetGame = stringsetGame + (responser) + " " 'added
-            Console.WriteLine(stringsetGame) 'added
+            responser = CStr(Caller()) 'added responser = cstr() which converts the number called into a string
+            playerCard.removenumbers(callernum) 'added - which sets the number to -1 !!IDK WHY!!
+            Console.WriteLine("The numbers rolled so far are: ") 'added - message for user to see what the numbers rolled out so far are
+            stringsetGame = stringsetGame + (responser) + " " 'added - adds the current number called to the list off all numbers called
+            Console.WriteLine(stringsetGame) 'added - outputs the list of all numbers called
 
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
-                Try 'added try catch
+                Try 'added try catch to validate the data entry
                     won = Console.ReadLine()
                 Catch ex As Exception
                     Console.WriteLine("That was not a valid option. Please enter 1 or 0")
@@ -63,21 +63,21 @@ Public Class BingoGame
     Public Sub PlayBonusGame()
         Dim playerCard As New BingoBonusCard
         Dim won As Boolean
-        Dim responser As String ' added
+        Dim responser As String 'added - converts the number that is currently being called into string to be added to the list of numbers stored
         playerCard.Displaycard()
         stringsetBonus = ""
         Console.WriteLine("Eyes Down... ")
         Do
             Console.WriteLine("**BINGO BONUS**")
-            responser = CStr(Caller()) 'added responser = cstr()
-            playerCard.removenumbers(callernum) 'added
-            Console.WriteLine("The numbers rolled so far are: ") 'added
-            stringsetBonus = stringsetBonus + (responser) + " " 'added
-            Console.WriteLine(stringsetBonus) 'added
+            responser = CStr(Caller()) 'added responser = cstr() which converts the number called into a string
+            playerCard.removenumbers(callernum) 'added - which sets the number to -1 !!IDK WHY!!
+            Console.WriteLine("The numbers rolled so far are: ") 'added - message for user to see what the numbers rolled out so far are
+            stringsetBonus = stringsetBonus + (responser) + " " 'added - adds the current number called to the list off all numbers called
+            Console.WriteLine(stringsetBonus) 'added - outputs the list of all numbers called
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
-                Try 'add try catch
+                Try 'added try catch to validate the data entry
                     won = Console.ReadLine()
                 Catch ex As Exception
                     Console.WriteLine("That was not a valid option. Please enter 1 or 0")
@@ -113,7 +113,7 @@ Public Class BingoGame
 
     Private Function Caller() As Integer
         'caller = numbers.nextBall 'removed line
-        callernum = numbers.nextBall 'added
+        callernum = numbers.nextBall 'added - stores next number to be called
         If round = 0 Then 'added
             Console.WriteLine("The first ball is ... ") 'added
             round = round + 1 'added
@@ -127,33 +127,33 @@ Public Class BingoGame
         If callernum = 11 Then 'changed from caller to callernum
             Console.WriteLine("legs 11")
         ElseIf callernum = 22 Then 'added 'changed from caller to callernum
-            Console.WriteLine("two little ducks") 'added
+            Console.WriteLine("two little ducks") 'added - special names thing
         Else
             Console.WriteLine(callernum) 'changed from caller to callernum
         End If
-        Return callernum 'added
+        Return callernum 'added - so it returns smth
     End Function
 
     Public Function Menu() As Boolean
         Dim choice As Integer
         numbers = New NumberMachine
-        Dim sr As New StreamReader(fileName)
-        Dim currentLine As String = 0
+        'Dim sr As New StreamReader(fileName)
+        'Dim currentLine As String = 0
+        'Do
+        '    currentLine = sr.ReadLine()
+        '    If Mid(currentLine, 1, 1) = "W" Then
+        '        winCounter = CInt(Mid(currentLine, 8, Len(currentLine)))
+        '    ElseIf Mid(currentLine, 1, 1) = "L" Then
+        '        lossCounter = CInt(Mid(currentLine, 10, Len(currentLine)))
+        '    End If
+        'Loop Until currentLine Is Nothing
+        'sr.Close()
+        'Dim file As System.IO.StreamWriter
+        'file = My.Computer.FileSystem.OpenTextFileWriter(fileName, False)
+        'file.Write("")
+        'file.Close()
         Do
-            currentLine = sr.ReadLine()
-            If Mid(currentLine, 1, 1) = "W" Then
-                winCounter = CInt(Mid(currentLine, 8, Len(currentLine)))
-            ElseIf Mid(currentLine, 1, 1) = "L" Then
-                lossCounter = CInt(Mid(currentLine, 10, Len(currentLine)))
-            End If
-        Loop Until currentLine Is Nothing
-        sr.Close()
-        Dim file As System.IO.StreamWriter
-        file = My.Computer.FileSystem.OpenTextFileWriter(fileName, False)
-        file.Write("")
-        file.Close()
-        Do
-            Try 'added try catch
+            Try 'added try catch to validate data entry
                 MenuOptions()
                 choice = Console.ReadLine()
             Catch ex As Exception
@@ -163,16 +163,16 @@ Public Class BingoGame
                     Console.WriteLine("Goodbye")
                     Return False 'added to fix error when enter 0 in menu
                 Case 1
-                    Console.Clear() 'added
+                    Console.Clear() 'added - clear console for user
                     PlayGame()
                 Case 2
-                    Console.Clear() 'added
+                    Console.Clear() 'added - clear console for user
                     PlayBonusGame()
                 Case 3
                     numbers.PracticeGame()
                     Console.Clear()
                     Console.WriteLine("Practice Game Initiated")
-                    PlayGame() 'added
+                    PlayGame() 'added - play game (normal bingo)
                 Case 4
                     instructions()
                 Case 5
@@ -180,7 +180,7 @@ Public Class BingoGame
                 Case Else
                     Console.WriteLine("Not an Option")
             End Select
-        Loop Until choice = 1 Or choice = 2 Or choice = 0 Or choice = 3 'added choice = 3
+        Loop Until choice = 1 Or choice = 2 Or choice = 0 Or choice = 3 'added choice = 3 (for practice game), 4 (to display instructions), 5 (tally up games won and store onto file)
         Return True
     End Function
     Public Sub instructions()
