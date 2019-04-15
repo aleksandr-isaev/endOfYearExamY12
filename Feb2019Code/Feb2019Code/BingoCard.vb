@@ -43,17 +43,18 @@
 
     Public Sub Displaycard()
         For x = 0 To 2
+            Console.Write("|")
             For y = 0 To 8
                 ' Console.Write(numbers(x, y) & ",")
                 If Len(CStr(numbers(x, y))) = 2 Then 'this if statement is for spacing and alignment of the board
                     If numbers(x, y) = -1 Then 'added this nested IF statement in order to display X when the number is picked
-                        Console.Write(" X,")
+                        Console.Write(" X | ")
                     Else
-                        Console.Write(numbers(x, y) & ",")
+                        Console.Write(numbers(x, y) & " | ") 'changed the , to a | so it is easier to see the columns separately
                     End If
                 ElseIf Len(CStr((numbers(x, y)))) = 1 Then
-                    Console.Write(" " & numbers(x, y) & ",")
-                    End If
+                    Console.Write(" " & numbers(x, y) & " | ")
+                End If
             Next y
             Console.WriteLine()
         Next x
