@@ -56,3 +56,4 @@
         Return current
     End Function
 End Class
+'test
