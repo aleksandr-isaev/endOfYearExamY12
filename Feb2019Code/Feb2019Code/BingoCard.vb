@@ -67,7 +67,7 @@
 
         Next x
     End Sub
-    Public Sub removenumbers(ByVal callernum As Integer) 'added sub for when number is picked
+    Public Sub removenumbers(ByVal callernum As Integer) 'added sub for when number is picked and sets to -1
         For x = 0 To 2
 
             For y = 0 To 8
