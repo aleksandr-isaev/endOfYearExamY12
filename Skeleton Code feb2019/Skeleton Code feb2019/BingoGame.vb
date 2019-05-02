@@ -1,5 +1,5 @@
 ﻿Public Class BingoGame
-    Dim numbers As New NumberMachine
+    Dim numbers As New NumberMachine 'composite aggregation
 
     Public Sub New()
         Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
@@ -8,7 +8,7 @@
     End Sub
 
     Public Sub PlayGame()
-        Dim playerCard As New BingoCard
+        Dim playerCard As New BingoCard 'composite aggregation
         Dim won As Boolean
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
@@ -20,7 +20,7 @@
             won = Console.ReadLine()
             Console.Clear() ' removes all text from console
             playerCard.Displaycard()
-        Loop Until won
+        Loop Until won 'loops until won = 1 (yes)
 
         Console.WriteLine("You have matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
         If playerCard.GameOver(numbers.getNumbers, numbers.getBack) = 15 Then
