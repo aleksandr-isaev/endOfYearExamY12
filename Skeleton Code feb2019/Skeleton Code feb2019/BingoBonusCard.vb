@@ -40,7 +40,7 @@
                 If numbers(x, y) <> 0 Then
                     For z = 0 To tail ' 0 to amount of umbers called
                         If numbers(x, y) = calledNumbers(z) Then
-                            matched += 1 ' checks if numbers matched with calledNUmbers
+                            matched += 1 ' checks if numbers matched with calledNe Umbers
                         End If
                     Next
                 End If
