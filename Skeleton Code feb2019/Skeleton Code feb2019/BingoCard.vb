@@ -7,7 +7,7 @@
     Private Function AssignNumbers() As Integer(,) 'assigns the numbers in the bingo card
         'Randomize()
         Dim row1(4) As Integer 'there are 5 numbers on each row and 5 spaces on each row 
-        Dim row2(4) As Integer
+        Dim row2(4) As Integer ' row() gets 5 numbers which gives the position on the row where the actual number to be called will be placed
         Dim row3(4) As Integer
         Dim cardnumbers(2, 8) As Integer 'refers to the whole card (3 rows, 9 columns)
 
