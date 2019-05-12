@@ -82,19 +82,25 @@
         Else
             Return False
         End If
+
     End Function
     'Checks horizontal lines
     Private Function Horizontal() As Boolean
         Dim matched() As Integer = {0, 0, 0}
+
         For x = 0 To 2
+
             For y = 0 To 8
                 If callednum(x, y) = True Then
                     matched(x) += 1
                 End If
+
             Next
+
             If matched(x) = 5 Then
                 Return True
             End If
+
         Next
         Return False
     End Function

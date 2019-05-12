@@ -8,13 +8,14 @@
         Do
             If NewBingoGame.Menu() = True Then
                 Console.WriteLine("Do you want to play again? - Y or N")
+
                 If UCase(Console.ReadLine) = "Y" Then
                 Else
                     loopCount = 1 'added
                 End If
-            Else loopcount = 1
+            Else loopCount = 1
             End If
-        Loop Until loopcount = 1 'added
+        Loop Until loopCount = 1 'added
     End Sub
 
 End Module

@@ -1,7 +1,7 @@
 ﻿Public Class BingoBonusCard
-    Inherits BingoCard
+    Inherits BingoCard 'inheritance
 
-    Public Overrides Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
+    Public Overrides Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer 'polymorphism 'tail pointer is the end pointer of the number card
         Dim matched As Integer
         matched = FullHouse(calledNumbers, tail)
         If matched = 15 Then
@@ -14,8 +14,8 @@
 
     Private Function FullHouse(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
         Dim matched As Integer
-        For x = 0 To 2
-            For y = 0 To 8
+        For x = 0 To 2 'goes through each row
+            For y = 0 To 8 'goes through each column
                 If numbers(x, y) <> 0 Then
                     For z = 0 To tail ' 0 to amount of umbers called
                         If numbers(x, y) = calledNumbers(z) Then

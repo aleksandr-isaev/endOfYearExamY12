@@ -1,15 +1,15 @@
 ﻿Public Class BingoCard
-    Protected numbers(2, 8) As Integer ' numbers on card
+    Protected numbers(2, 8) As Integer ' numbers on card 'protect means only editable within that class
 
     Public Sub New()
         numbers = AssignNumbers()
     End Sub
     Private Function AssignNumbers() As Integer(,) 'assigns the numbers in the bingo card
         'Randomize()
-        Dim row1(4) As Integer
-        Dim row2(4) As Integer
+        Dim row1(4) As Integer 'there are 5 numbers on each row and 5 spaces on each row 
+        Dim row2(4) As Integer ' row() gets 5 numbers which gives the position on the row where the actual number to be called will be placed
         Dim row3(4) As Integer
-        Dim cardnumbers(2, 8) As Integer
+        Dim cardnumbers(2, 8) As Integer 'refers to the whole card (3 rows, 9 columns)
 
         row1 = AssignRowPlaces()
         row2 = AssignRowPlaces()
@@ -57,26 +57,24 @@
     End Sub
 
     Private Function AssignRowPlaces() As Integer()
-        Dim numberCount As Integer
+        Dim numberCount As Integer 'automataily set to 0
         Dim row(4) As Integer
-        Dim match As Boolean
+        Dim match As Boolean 'variable to check if there are duplicates
         For x = 0 To 4
-            row(x) = -1
+            row(x) = -1 'this sets 5 numbers in each row to -1
         Next
         Do While numberCount <= 4
             match = False
-            row(numberCount) = repo.NewRandom(0, 8)
+            row(numberCount) = repo.NewRandom(0, 8) 'generates a random number beween 0 and 89 to be the random number on the card
             numberCount += 1
-            For x = 0 To 4
+            For x = 0 To 4 'for loop and if statement below it to check if there are duplicates, then number count goes down 1 and the process repeats until it has 5 random numbers
                 If row(numberCount - 1) = row(x) And numberCount - 1 <> x Then
-
                     match = True
                 End If
             Next
             If match Then
                 numberCount -= 1
             End If
-
         Loop
         row = rearrage(row, 4)
         Return row
@@ -97,7 +95,7 @@
         Return dataSet
     End Function
 
-    Public Overridable Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
+    Public Overridable Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer 'checks to see how mow many numbers were actually called
         Dim matched As Integer
         For x = 0 To 2
             For y = 0 To 8
