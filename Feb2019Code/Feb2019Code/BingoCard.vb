@@ -1,5 +1,7 @@
 ﻿Public Class BingoCard
     Protected numbers(2, 8) As Integer
+    Protected callednum(2, 8) As Boolean
+    Protected alreadyCalled As String = ""
 
     Public Sub New()
         numbers = AssignNumbers()
@@ -47,27 +49,23 @@
             For y = 0 To 8
                 ' Console.Write(numbers(x, y) & ",")
                 If Len(CStr(numbers(x, y))) = 2 Then 'this if statement is for spacing and alignment of the board
-                    If numbers(x, y) = -1 Then 'added this nested IF statement in order to display X when the number is picked
+                    If callednum(x, y) = True Then 'added this nested IF statement in order to display X when the number is picked
                         Console.Write(" X | ")
                     Else
                         Console.Write(numbers(x, y) & " | ") 'changed the , to a | so it is easier to see the columns separately
                     End If
                 ElseIf Len(CStr((numbers(x, y)))) = 1 Then
-                    Console.Write(" " & numbers(x, y) & " | ")
+                    If callednum(x, y) = True Then
+                        Console.Write(" X | ")
+                    Else
+                        Console.Write(" " & numbers(x, y) & " | ")
+                    End If
                 End If
             Next y
             Console.WriteLine()
         Next x
     End Sub
-    Public Sub removenumbers(ByVal callernum As Integer) 'added sub for when number is picked
-        For x = 0 To 2
-            For y = 0 To 8
-                If numbers(x, y) = callernum Then
-                    numbers(x, y) = -1
-                End If
-            Next
-        Next
-    End Sub
+
     Private Function AssignRowPlaces() As Integer()
         Dim numberCount As Integer
         Dim row(4) As Integer
@@ -111,20 +109,32 @@
     End Function
 
 
-    Public Overridable Function GameOver(ByVal calledNumbers As Integer(), ByVal tail As Integer) As Integer
+    Public Overridable Function GameOver(ByVal tail As Integer) As Integer
         Dim matched As Integer
         For x = 0 To 2
             For y = 0 To 8
-                If numbers(x, y) <> 0 Then
-
-                    For z = 0 To tail
-                        If numbers(x, y) = calledNumbers(z) Then
-                            matched += 1
-                        End If
-                    Next
+                If callednum(x, y) = True Then
+                    matched += 1
                 End If
             Next
         Next
         Return matched
     End Function
+
+    Sub checkNum(ByVal callerNumbers As String)
+        Dim callerNums As Integer
+        If callerNumbers <> " " Then
+            callerNums = CInt(Mid(callerNumbers, Len(alreadyCalled) + 1, Len(callerNumbers) - 1))
+        End If
+        alreadyCalled = callerNumbers
+        If callerNums <> 0 Then
+            For x = 0 To 8
+                For y = 0 To 2
+                    If numbers(y, x) = callerNums Then
+                        callednum(y, x) = True
+                    End If
+                Next
+            Next
+        End If
+    End Sub
 End Class
