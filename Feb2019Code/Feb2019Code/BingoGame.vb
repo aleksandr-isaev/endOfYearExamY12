@@ -1,6 +1,4 @@
-﻿Imports System.IO
-Public Class BingoGame
-    Private fileName As String = "C:\Users\Michiel\Documents\GitHub\febCode2019\wins.txt"
+﻿Public Class BingoGame
     Private winCounter As Integer = 0
     Private lossCounter As Integer = 0
     Private numbers As New NumberMachine
@@ -22,13 +20,13 @@ Public Class BingoGame
         stringsetGame = ""
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
-
         Do
-            responser = CStr(Caller()) 'added responser = cstr() which converts the number called into a string
-            playerCard.removenumbers(callernum) 'added - which sets the number to -1 !!IDK WHY!!
-            Console.WriteLine("The numbers rolled so far are: ") 'added - message for user to see what the numbers rolled out so far are
-            stringsetGame = stringsetGame + (responser) + " " 'added - adds the current number called to the list off all numbers called
-            Console.WriteLine(stringsetGame) 'added - outputs the list of all numbers called
+            responser = CStr(Caller()) 'added responser = cstr()
+            Console.WriteLine("The numbers rolled so far are: ") 'added
+            stringsetGame = stringsetGame + (responser) + " " 'added
+            Console.WriteLine(stringsetGame) 'added
+
+            playerCard.checkNum(stringsetGame)
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
 
@@ -47,24 +45,14 @@ Public Class BingoGame
             playerCard.Displaycard()
 
         Loop Until won
-
-        Console.WriteLine("You have matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
-        Dim file As System.IO.StreamWriter
-        file = My.Computer.FileSystem.OpenTextFileWriter(fileName, True)
-
-        If playerCard.GameOver(numbers.getNumbers, numbers.getBack) = 15 Then
+        Console.WriteLine("You have matched ") '& playerCard.GameOver(numbers.getNumbers, numbers.getBack))
+        If playerCard.GameOver(numbers.getBack) = 15 Then
             Console.WriteLine("Yes you have won!")
-            file.WriteLine("Wins : " & winCounter + 1)
-            file.Write("Losses : " & lossCounter)
         Else
             Console.WriteLine("Sorry you stopped too early")
-            Console.WriteLine("You only matched " & playerCard.GameOver(numbers.getNumbers, numbers.getBack))
+            Console.WriteLine("You only matched " & playerCard.GameOver(numbers.getBack))
             Console.WriteLine("GAME OVER")
-            file.WriteLine("Wins : " & winCounter)
-            file.Write("Losses : " & lossCounter + 1)
         End If
-
-        file.Close()
     End Sub
 
     Public Sub PlayBonusGame()
@@ -79,11 +67,11 @@ Public Class BingoGame
         Do
 
             Console.WriteLine("**BINGO BONUS**")
-            responser = CStr(Caller()) 'added responser = cstr() which converts the number called into a string
-            playerCard.removenumbers(callernum) 'added - which sets the number to -1 !!IDK WHY!!
-            Console.WriteLine("The numbers rolled so far are: ") 'added - message for user to see what the numbers rolled out so far are
-            stringsetBonus = stringsetBonus + (responser) + " " 'added - adds the current number called to the list off all numbers called
-            Console.WriteLine(stringsetBonus) 'added - outputs the list of all numbers called
+            responser = CStr(Caller()) 'added responser = cstr()
+            Console.WriteLine("The numbers rolled so far are: ") 'added
+            stringsetBonus = stringsetBonus + (responser) + " " 'added
+            Console.WriteLine(stringsetBonus) 'added
+            playerCard.checkNum(stringsetBonus)
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
             Do
@@ -101,32 +89,16 @@ Public Class BingoGame
             playerCard.Displaycard()
 
         Loop Until won
-
-        Dim file As System.IO.StreamWriter
-        file = My.Computer.FileSystem.OpenTextFileWriter(fileName, True)
-
-        Select Case playerCard.GameOver(numbers.getNumbers, numbers.getBack)
-
+        Select Case playerCard.GameOver(numbers.getBack)
             Case 1
                 Console.WriteLine("Well Done Full House")
-                file.WriteLine("Wins : " & winCounter + 1)
-                file.Write("Losses : " & lossCounter)
             Case 2
                 Console.WriteLine("Well Done Horizontal Lines")
-                file.WriteLine("Wins : " & winCounter + 1)
-                file.Write("Losses : " & lossCounter)
             Case 3
                 Console.WriteLine("Well Done Corners")
-                file.WriteLine("Wins : " & winCounter + 1)
-                file.Write("Losses : " & lossCounter)
             Case 0
                 Console.WriteLine("Sorry you stopped too early, GAME OVER")
-                file.WriteLine("Wins : " & winCounter)
-                file.Write("Losses : " & lossCounter + 1)
-
         End Select
-
-        file.Close()
     End Sub
 
     Private Function Caller() As Integer
@@ -157,23 +129,6 @@ Public Class BingoGame
     Public Function Menu() As Boolean
         Dim choice As Integer
         numbers = New NumberMachine
-
-        'Dim sr As New StreamReader(fileName)
-        'Dim currentLine As String = 0
-        'Do
-        '    currentLine = sr.ReadLine()
-        '    If Mid(currentLine, 1, 1) = "W" Then
-        '        winCounter = CInt(Mid(currentLine, 8, Len(currentLine)))
-        '    ElseIf Mid(currentLine, 1, 1) = "L" Then
-        '        lossCounter = CInt(Mid(currentLine, 10, Len(currentLine)))
-        '    End If
-        'Loop Until currentLine Is Nothing
-        'sr.Close()
-        'Dim file As System.IO.StreamWriter
-        'file = My.Computer.FileSystem.OpenTextFileWriter(fileName, False)
-        'file.Write("")
-        'file.Close()
-
         Do
 
             Try 'added try catch to validate data entry
@@ -199,8 +154,6 @@ Public Class BingoGame
                     PlayGame() 'added - play game (normal bingo)
                 Case 4
                     instructions()
-                Case 5
-                    tally()
                 Case Else
                     Console.WriteLine("Not an Option")
             End Select
@@ -224,27 +177,6 @@ Public Class BingoGame
         Console.WriteLine("Choose 4 for the instructions")
         Console.WriteLine("Choose 5 to see the number of times you have won")
         Console.WriteLine("Choose 0 to exit")
-    End Sub
-
-    Public Sub tally()
-        Dim sr As New StreamReader(fileName)
-        Dim currentLine As String = 0
-
-        Do
-
-            currentLine = sr.ReadLine()
-
-            If Mid(currentLine, 1, 1) = "W" Then
-                winCounter = CInt(Mid(currentLine, 8, Len(currentLine)))
-            ElseIf Mid(currentLine, 1, 1) = "L" Then
-                lossCounter = CInt(Mid(currentLine, 10, Len(currentLine)))
-            End If
-
-        Loop Until currentLine Is Nothing
-
-        sr.Close()
-        Console.WriteLine("You have played " & winCounter + lossCounter & " games
-Out of these games, you have won " & winCounter & " times and you have lost " & lossCounter & " times.")
     End Sub
 
 End Class
