@@ -54,7 +54,9 @@
             Case 1
                 Console.WriteLine("Well Done Full House")
             Case 2
-                Console.WriteLine("Well Done Two Lines")
+                Console.WriteLine("Well Done A  Full Line")
+            Case 3
+                Console.WriteLine("Well Done four corner")
             Case 0
                 Console.WriteLine("Sorry you stopped too early, GAME OVER")
 

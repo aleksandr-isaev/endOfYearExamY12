@@ -8,22 +8,10 @@
             Return 1 ' if all numbers matched then returns 1
         End If
         Console.WriteLine("You only matched " & matched)
-        For x = 0 To 2
-            matched = 0
-            For y = 0 To 8
-                If numbers(x, y) <> 0 Then
-                    For z = 0 To tail ' 0 to amount of umbers called
-                        If numbers(x, y) = calledNumbers(z) Then
-                            matched += 1 ' checks if numbers matched with calledNUmbers
-                        End If
-                    Next
-
-                End If
-
-            Next
-
-
-        Next
+        matched = Corners(calledNumbers, tail)
+        If matched = 4 Then
+            Return 3
+        End If
 
 
 
@@ -50,6 +38,44 @@
         Return matched
         'new loop to check if the user has a full row 
 
+    End Function
+    Private Function Corners()
+        Dim matched As Integer
+        Dim x As Integer
+
+        Dim Left As Boolean
+        Dim right As Boolean
+
+        x = 0
+        Do
+
+            For y = 0 To 8
+                If numbers(x, y) <> 0 And Left = False Then
+                    Left = True
+                    For z = 0 To tail ' 0 to amount of umbers called
+                        If numbers(x, y) = calledNumbers(z) Then
+                            matched += 1 ' checks if numbers matched with calledNe Umbers
+                        End If
+                    Next
+                ElseIf numbers(x, 8 - y) <> 0 And right = False Then
+                    right = True
+                    For z = 0 To tail ' 0 to amount of umbers called
+                        If numbers(x, 8 - y) = calledNumbers(z) Then
+                            matched += 1 ' checks if numbers matched with calledNe Umbers
+                        End If
+                    Next
+                End If
+
+
+            Next
+
+            x += 2
+
+        Loop Until x > 2
+
+
+
+        Return matched
     End Function
 
 
