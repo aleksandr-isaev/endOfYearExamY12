@@ -11,7 +11,7 @@
 
                 If UCase(Console.ReadLine) = "Y" Then
                 Else
-                    loopCount = 1 'added
+                    loopCount = 1 'added to check if end the system
                 End If
             Else loopCount = 1
             End If
