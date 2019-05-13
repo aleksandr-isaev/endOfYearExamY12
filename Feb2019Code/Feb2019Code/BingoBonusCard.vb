@@ -2,7 +2,7 @@
     Inherits BingoCard
 
     Public Overrides Function GameOver(ByVal tail As Integer) As Integer
-        Dim matched As Integer
+        Dim matched As Integer '
         matched = MyBase.GameOver(tail)
         If Corners() Then
             Return 3
