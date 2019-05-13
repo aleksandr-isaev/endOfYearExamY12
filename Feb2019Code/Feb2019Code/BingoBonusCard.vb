@@ -6,10 +6,10 @@
         matched = MyBase.GameOver(tail)
         If Corners() Then
             Return 3
-        ElseIf matched = 15 Then
-            Return 1
         ElseIf Horizontal() Then
             Return 2
+        ElseIf matched = 15 Then
+            Return 1
         End If
 
         Console.WriteLine("You only matched " & matched)
@@ -23,7 +23,7 @@
         Dim count As Integer = 0
         Dim right As Boolean = False
         For x = 0 To 2
-            While x <> 2 And left = False
+            While x <> 1 And left = False
                 If numbers(x, count) <> 0 Then
                     left = True
                     If callednum(x, count) Then
@@ -33,7 +33,7 @@
                 End If
             End While
             count = 0
-            While x <> 2 And right = False
+            While x <> 1 And right = False
                 If numbers(x, 8 - count) <> 0 Then
                     right = True
                     If callednum(x, 8 - count) Then
