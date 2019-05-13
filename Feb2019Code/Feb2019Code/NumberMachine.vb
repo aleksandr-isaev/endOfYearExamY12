@@ -1,12 +1,11 @@
 ﻿Public Class NumberMachine
     Private numberOrder(89) As Integer
     Private current As Integer
-    Private back As Integer = 89
-    ' Changed it so that now it does 1 - 90 instead of 1 - 75
+    Private back As Integer = 89 'changed from 74 to 89 so that now it does 1 - 90 instead of 1 - 75
     Public Sub New()
         Dim temp, num1, num2 As Integer
 
-        For x = 1 To 90
+        For x = 1 To 90 'changed from 75 to 90 so that now it does 1 - 90 instead of 1 - 75
             numberOrder(x - 1) = x
         Next x
 

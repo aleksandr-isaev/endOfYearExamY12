@@ -68,9 +68,9 @@
 
             Console.WriteLine("**BINGO BONUS**")
             responser = CStr(Caller()) 'added responser = cstr()
-            Console.WriteLine("The numbers rolled so far are: ") 'added
-            stringsetBonus = stringsetBonus + (responser) + " " 'added
-            Console.WriteLine(stringsetBonus) 'added
+            Console.WriteLine("The numbers rolled so far are: ") 'added so we know what numbers have been called so far
+            stringsetBonus = stringsetBonus + (responser) + " " 'added - this stores the number been called with the rest of the numbers that have already been called 
+            Console.WriteLine(stringsetBonus) 'added - this outputs the numbers called so far
             playerCard.checkNum(stringsetBonus)
             Console.WriteLine("Did you win?")
             Console.WriteLine("Enter 1 for yes and 0 for no?")
@@ -106,10 +106,10 @@
         callernum = numbers.nextBall 'added - stores next number to be called
 
         If round = 0 Then 'added
-            Console.WriteLine("The first ball is ... ") 'added
+            Console.WriteLine("The first ball is ... ") 'added for grammer purposes
             round = round + 1 'added
         ElseIf callernum = -1 Then 'changed from caller to callernum
-            Console.WriteLine("Sorry there are no more available numbers left in the game") 'added
+            Console.WriteLine("Sorry there are no more available numbers left in the game") 'added so users know to not bother rolling and more since there are no available numbers left
         Else
             Console.WriteLine("and the next ball is.....")
             round = round + 1

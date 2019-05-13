@@ -11,35 +11,35 @@
         Dim row3(4) As Integer
         Dim cardnumbers(2, 8) As Integer 'refers to the whole card (3 rows, 9 columns)
 
-        row1 = AssignRowPlaces()
-        row2 = AssignRowPlaces()
-        row3 = AssignRowPlaces()
+        row1 = AssignRowPlaces() ' number assigned location
+        row2 = AssignRowPlaces() 'number assigned location
+        row3 = AssignRowPlaces() 'number assigned location
         For x = 0 To 4
             Console.WriteLine(row1(x))
         Next
-        For x = 0 To 4
-            cardnumbers(0, row1(x)) = repo.NewRandom(1, 8) + (10 * row1(x))
+        For x = 0 To 4 'first row
+            cardnumbers(0, row1(x)) = repo.NewRandom(1, 8) + (10 * row1(x)) 'the lower bound is 1, the upperbound is 8 - and so a random number is generated between 1 and 8. then 10 * position of number is added to this number
         Next
 
-        For x = 0 To 4
+        For x = 0 To 4 'second row
             Dim base As Integer
-            base = (cardnumbers(0, row2(x)) Mod 10) + 1
-            base = repo.NewRandom(base, 9)
-            cardnumbers(1, row2(x)) = base + (10 * row2(x))
+            base = (cardnumbers(0, row2(x)) Mod 10) + 1 'base is compared to the value in same index in array on row 1, mod 10 and then 1 is added
+            base = repo.NewRandom(base, 9) 'number generated between base calculated above and 9
+            cardnumbers(1, row2(x)) = base + (10 * row2(x)) 'number in row 1 = base calculated above (between base and 9)  + (10 * position in row 2)
         Next
 
-        For x = 0 To 4
+        For x = 0 To 4 'third row
             Dim base As Integer
-            If cardnumbers(1, row3(x)) = 0 Then
+            If cardnumbers(1, row3(x)) = 0 Then 'if the value in row 2 in same position of array in row 3 is 0 then
 
-                base = (cardnumbers(0, row3(x)) Mod 10) + 1
+                base = (cardnumbers(0, row3(x)) Mod 10) + 1 'it will use the number in row 1 of same position, mod 10 and then add 1
             Else
-                base = (cardnumbers(1, row3(x)) Mod 10) + 1
+                base = (cardnumbers(1, row3(x)) Mod 10) + 1 'else it will use the value in row 3 in the same position, mod 10 and then add 1
             End If
 
 
-            base = repo.NewRandom(base, 10)
-            cardnumbers(2, row3(x)) = base + (10 * row3(x))
+            base = repo.NewRandom(base, 10) 'base is random number between base and 10
+            cardnumbers(2, row3(x)) = base + (10 * row3(x)) 'number in row 3 = base calculated above + (10 * position in row)
         Next
 
         Return cardnumbers
