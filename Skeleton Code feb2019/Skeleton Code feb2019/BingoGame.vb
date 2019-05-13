@@ -36,6 +36,7 @@
     Public Sub PlayBonusGame()
         Dim playerCard As New BingoBonusCard
         Dim won As Boolean
+
         playerCard.Displaycard()
         Console.WriteLine("Eyes Down... ")
 
@@ -47,6 +48,9 @@
             won = Console.ReadLine()
             Console.Clear()
             playerCard.Displaycard()
+
+
+
         Loop Until won
 
 

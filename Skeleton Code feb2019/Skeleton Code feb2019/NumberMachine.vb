@@ -1,18 +1,18 @@
 ﻿Class NumberMachine
-    Private numberOrder(74) As Integer ' bingo balls 
+    Private numberOrder(89) As Integer ' bingo balls 
     Private current As Integer ' current number of bingo balls shown
-    Private back As Integer = 74 ' number of bingo balls
+    Private back As Integer = 89 ' number of bingo balls
 
 
     Public Sub New()
         Dim temp, num1, num2 As Integer
-        For x = 1 To 75
+        For x = 1 To 90
             numberOrder(x - 1) = x ' sets numberOrder from 1 to 75
         Next x
 
         For x = 1 To 1000
-            num1 = repo.NewRandom(0, 74) ' random number assigned to num1
-            num2 = repo.NewRandom(0, 74) ' random number assigned to num2
+            num1 = repo.NewRandom(0, 89) ' random number assigned to num1
+            num2 = repo.NewRandom(0, 89) ' random number assigned to num2
             ' switches numberOrder(num1) with numberOrder(num2)
             temp = numberOrder(num1) ' integer in numberOrder with position of num1 is assigned to temp
             numberOrder(num1) = numberOrder(num2) ' integer in numberOrder with position of num2 is assigned to numberOrder(num1)
